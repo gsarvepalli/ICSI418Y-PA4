@@ -5,7 +5,6 @@ import CreateProject from "./components/CreateProject";
 import ProjectList from "./components/ProjectList";
 import ProjectMembers from "./components/ProjectMembers";
 import UserStories from "./components/UserStories";
-import ProjectBacklog from "./components/ProjectBacklog";
 import "./App.css";
 
 function App() {
@@ -36,13 +35,8 @@ function App() {
       />
 
       <ProjectMembers project={selectedProject} />
-      
-      <UserStories
-        key={selectedProject?._id || "no-project"}
-        project={selectedProject}
-      />
 
-      <ProjectBacklog
+      <UserStories
         key={selectedProject?._id || "no-project"}
         project={selectedProject}
       />
