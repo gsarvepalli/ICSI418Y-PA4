@@ -23,8 +23,7 @@ function UserStories({ project }) {
     const [loading, setLoading] = useState(false);
     const [saving, setSaving] = useState(false);
 
-    // RESET FORM
-
+    
     function resetForm() {
         setTitle("");
         setDescription("");
@@ -33,8 +32,6 @@ function UserStories({ project }) {
         setStatus("To Do");
         setEditStoryId(null);
     }
-
-    // LOAD STORIES
 
     const loadStories = useCallback(async () => {
         if (!project) {
@@ -67,8 +64,6 @@ function UserStories({ project }) {
         }
     }, [project]);
 
-    // LOAD PROJECT MEMBERS
-
     const loadMembers = useCallback(async () => {
         if (!project) {
             setMembers([]);
@@ -96,8 +91,6 @@ function UserStories({ project }) {
         }
     }, [project]);
 
-    // LOAD DATA WHEN PROJECT CHANGES
-
     useEffect(() => {
         resetForm();
         setStories([]);
@@ -110,8 +103,6 @@ function UserStories({ project }) {
             loadMembers();
         }
     }, [project, loadStories, loadMembers]);
-
-    // CREATE OR UPDATE STORY
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -160,8 +151,6 @@ function UserStories({ project }) {
                 assigned_user_id: assignedUserId || null
             };
 
-            // Status is only included when editing.
-
             if (editStoryId) {
                 body.status = status;
             }
@@ -203,8 +192,6 @@ function UserStories({ project }) {
         }
     }
 
-    // LOAD STORY INTO EDIT FORM
-
     function handleEdit(story) {
         setMessage("");
         setError(false);
@@ -223,8 +210,6 @@ function UserStories({ project }) {
             behavior: "smooth"
         });
     }
-
-    // DELETE STORY
 
     async function handleDelete(storyId) {
         const confirmed = window.confirm(
@@ -275,8 +260,6 @@ function UserStories({ project }) {
         }
     }
 
-    // NO PROJECT SELECTED
-
     if (!project) {
         return (
             <section className="panel">
@@ -288,8 +271,6 @@ function UserStories({ project }) {
         );
     }
 
-    // MAIN INTERFACE
-
     return (
         <section className="panel">
 
@@ -298,8 +279,6 @@ function UserStories({ project }) {
             <h3>{project.name}</h3>
 
             <hr />
-
-            {/* CREATE / EDIT FORM */}
 
             <h3>
                 {editStoryId
@@ -350,8 +329,6 @@ function UserStories({ project }) {
                         </option>
                     ))}
                 </select>
-
-                {/* STATUS ONLY APPEARS WHILE EDITING */}
 
                 {editStoryId && (
                     <>
@@ -442,8 +419,6 @@ function UserStories({ project }) {
             )}
 
             <hr />
-
-            {/* BACKLOG DISPLAY */}
 
             <div className="section-heading">
                 <h3>Project Stories</h3>
